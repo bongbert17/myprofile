@@ -1,5 +1,50 @@
 
+import { useState } from "react";
+
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { name, email, message } = formData;
+    const text = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    const token = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+    const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+        }),
+      });
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      alert("Error sending message.");
+    }
+  };
+
   // Styles based on the provided image: white background, large rounded card, teal accent.
   return (
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white flex justify-center items-center">
@@ -16,8 +61,8 @@ function Contact() {
           </div>
 
           {/* Form Content */}
-          <form className="max-w-xl mx-auto space-y-6">
-            
+          <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
+
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 text-left">Name</label>
@@ -25,6 +70,9 @@ function Contact() {
                 id="name"
                 type="text"
                 placeholder="Enter Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white text-black placeholder-gray-500 dark:placeholder-gray-400 focus:ring-teal-500 focus:border-teal-500 shadow-inner"
               />
             </div>
@@ -36,6 +84,9 @@ function Contact() {
                 id="email"
                 type="email"
                 placeholder="Enter Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white text-black placeholder-gray-500 dark:placeholder-gray-400 focus:ring-teal-500 focus:border-teal-500 shadow-inner"
               />
             </div>
@@ -47,10 +98,13 @@ function Contact() {
                 id="message"
                 placeholder="Enter Your Message"
                 rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                required
                 className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white text-black placeholder-gray-500 dark:placeholder-gray-400 focus:ring-teal-500 focus:border-teal-500 shadow-inner resize-none"
               ></textarea>
             </div>
-            
+
             {/* Button */}
             <div className="pt-2">
               <button
