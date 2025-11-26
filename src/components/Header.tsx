@@ -19,17 +19,6 @@ function Header() {
     }
   }, []);
 
-  const changeTheme = (theme: string) => {
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setCurrentTheme("light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setCurrentTheme("dark");
-    }
-  };
 
 
 
@@ -52,23 +41,6 @@ function Header() {
           <a href="#contact" className="hover:text-cyan-500 transition-colors duration-300">Contact</a>
         </nav>
 
-        <div className="flex items-center gap-4">
-
-          {currentTheme === "dark" ? (
-            <BsFillMoonFill
-              className="cursor-pointer text-lg hover:text-cyan-500 transition-transform hover:scale-110 dark:text-gray-200"
-              onClick={() => changeTheme("light")}
-            />
-          ) : (
-            <BsSun
-              className="cursor-pointer text-lg hover:text-cyan-500 transition-transform hover:scale-110 dark:text-gray-200"
-              onClick={() => changeTheme("dark")}
-            />
-          )}
-          {/* <AiFillMessage className="cursor-pointer hover:text-cyan-500 dark:text-gray-200" />
-          <MdNotificationsActive className="cursor-pointer hover:text-cyan-500 dark:text-gray-200" />
-          <BsFillQuestionCircleFill className="cursor-pointer hover:text-cyan-500 dark:text-gray-200" /> */}
-        </div>
       </div>
 
       {menuOpen && (
