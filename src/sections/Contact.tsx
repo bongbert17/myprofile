@@ -1,4 +1,3 @@
-import React from "react";
 
 function Contact() {
   // Styles based on the provided image: white background, large rounded card, teal accent.
@@ -47,7 +46,7 @@ function Contact() {
               <textarea
                 id="message"
                 placeholder="Enter Your Message"
-                rows="5"
+                rows={5}
                 className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white text-black placeholder-gray-500 dark:placeholder-gray-400 focus:ring-teal-500 focus:border-teal-500 shadow-inner resize-none"
               ></textarea>
             </div>

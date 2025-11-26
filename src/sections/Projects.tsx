@@ -1,4 +1,3 @@
-import React from "react";
 
 // Import your project images here
 // For example:

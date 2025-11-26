@@ -1,10 +1,16 @@
-import React from "react";
 
 // You will need to import your actual skill logos here.
 // For example:
 // import html5Logo from "../assets/logos/html5.svg";
 // import css3Logo from "../assets/logos/css3.svg";
 // ... and so on for all your skills.
+
+interface SkillBarProps {
+  name: string;
+  percentage: number;
+  color: string;
+  logo: string;
+}
 
 // For demonstration, I'll use placeholder icons/simple text for logos.
 // You should replace these with actual imports like the commented out examples above.
@@ -29,7 +35,7 @@ const skillsData = {
 };
 
 // Helper component to render a single skill bar
-const SkillBar = ({ name, percentage, color, logo }) => {
+const SkillBar = ({ name, percentage, color, logo }: SkillBarProps) => {
   // Map simple colors to Tailwind CSS classes
   const colorMap = {
     orange: "bg-orange-600",
@@ -45,7 +51,7 @@ const SkillBar = ({ name, percentage, color, logo }) => {
     sky: "bg-sky-700"
   };
 
-  const barColor = colorMap[color] || "bg-cyan-500"; // Default to cyan if not found
+  const barColor = colorMap[color as keyof typeof colorMap] || "bg-cyan-500"; // Default to cyan if not found
 
   return (
     <div className="mb-6">

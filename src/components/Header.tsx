@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { BsFillMoonFill, BsSun, BsSearch, BsFillQuestionCircleFill } from "react-icons/bs";
-import { MdNotificationsActive } from "react-icons/md";
-import { AiFillMessage } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { BsFillMoonFill, BsSun } from "react-icons/bs";
 
 function Header() {
   const [currentTheme, setCurrentTheme] = useState("");

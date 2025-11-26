@@ -1,6 +1,4 @@
-import React from "react";
-// Use your uploaded image path
-import profileImg from "../assets/profile.JPG"; 
+import profileImg from "../assets/profile.jpg";
 // You'll need to install these icons, e.g., npm install react-icons
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'; 
 
