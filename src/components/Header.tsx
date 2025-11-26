@@ -1,23 +1,8 @@
-import { useEffect, useState } from "react";
-import { BsFillMoonFill, BsSun } from "react-icons/bs";
+import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
 function Header() {
-  const [currentTheme, setCurrentTheme] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
-      document.documentElement.classList.add("dark");
-      setCurrentTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      setCurrentTheme("light");
-    }
-  }, []);
 
 
 
